@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Voice Translator</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link to Font Awesome for the microphone icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ovozli tarjimon</h1>
+
+        <div class="controls">
+            <div class="mic-container">
+                <button id="start-btn">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+            <select id="input-language">
+                <option value="en-US">English</option>
+                <option value="ru-RU">Russian</option>
+                <option value="uz-UZ">Uzbek</option>
+            </select>
+        </div>
+
+        <div id="recognized-text">
+            <p><strong>Aytilgan:</strong> <span id="speech-output"></span></p>
+            <p><strong>Tarjima:</strong> <span id="translated-output"></span></p>
+        </div>
+
+        <audio id="audio-output" autoplay></audio>
+    </div>
+
+    <script src="translator.js"></script>
+</body>
+</html>

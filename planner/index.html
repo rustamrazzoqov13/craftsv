@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tur generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tur generator:</h1>
+        <form id="itinerary-form">
+            <label for="preference">Sayohat turi:</label>
+            <select id="preference">
+                <option value="Ziyorat">Ziyorat</option>
+                <option value="Davolanish">Davolanish</option>
+                <option value="Gastronomik">Gastronomik</option>
+                <option value="Ko'ngilochar">Ko'ngilochar</option>
+                <option value="Tarixiy">Tarixiy</option>
+            </select>
+
+            <label for="budget">Sayohat budjeti (USD):</label>
+            <input type="number" id="budget" placeholder="Enter your budget">
+
+            <label for="days">Davomiyligi:</label>
+            <input type="number" id="days" placeholder="Enter days">
+
+            <button type="button" onclick="generateItinerary()">Boshlash</button>
+        </form>
+
+        <div id="itinerary-results">
+            <h2>Siz uchun:</h2>
+            <a href="contact.html"itinerary-list"></ul></a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

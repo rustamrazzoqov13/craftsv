@@ -1,0 +1,153 @@
+/* General body and layout styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #4a90e2;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* Microphone button styling */
+.mic-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+button {
+    background: #4a90e2;
+    color: white;
+    font-size: 24px;
+    padding: 20px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 80px;
+    height: 80px;
+}
+
+button i {
+    font-size: 28px;
+}
+
+button:hover {
+    background: #357ABD;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.6);
+}
+
+/* Select dropdown styling */
+select {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 25px;
+    border: 2px solid #ddd;
+    margin-left: 10px;
+    background: white;
+    color: #333;
+    transition: border 0.3s ease;
+}
+
+select:hover, select:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#recognized-text {
+    text-align: left;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+strong {
+    font-weight: 600;
+}
+
+#speech-output {
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#translated-output {
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Adding some interactive feedback */
+button:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+audio {
+    display: none;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    button, select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .mic-container {
+        margin-bottom: 20px;
+    }
+}
