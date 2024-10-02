@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive 3D City Exploration</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #scene-container {
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+        }
+
+        /* Media queries for responsive adjustments */
+        @media (max-width: 1024px) {
+            #scene-container {
+                height: 100vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #scene-container {
+                height: 100vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #scene-container {
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="scene-container"></div>
+
+    <!-- Three.js and GLTFLoader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="module">
+        import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.128/examples/jsm/loaders/GLTFLoader.js';
+
+        let scene, camera, renderer;
+
+        function init() {
+            // Create the scene
+            scene = new THREE.Scene();
+
+            // Responsive camera
+            const aspectRatio = window.innerWidth / window.innerHeight;
+            camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+            setCameraPosition();
+
+            // Renderer setup
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.getElementById('scene-container').appendChild(renderer.domElement);
+
+            // Lighting setup
+            const ambientLight = new THREE.AmbientLight(0x404040, 2);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(10, 10, 10).normalize();
+            scene.add(directionalLight);
+
+            // Load 3D City Model
+            const loader = new GLTFLoader();
+            loader.load('https://raw.githubusercontent.com/uxai/easy-threejs-gltf/main/tokyo.glb', function(gltf) {
+                const city = gltf.scene;
+                city.scale.set(0.05, 0.05, 0.05);  // Adjust scale for city model
+                scene.add(city);
+                animate();
+            }, undefined, function(error) {
+                console.error('Error loading city model:', error);
+            });
+
+            // Adjust scene when window is resized
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        // Set the camera position dynamically based on the device
+        function setCameraPosition() {
+            if (window.innerWidth > 1024) {
+                camera.position.set(10, 10, 50);  // Desktop view
+            } else if (window.innerWidth <= 1024 && window.innerWidth > 480) {
+                camera.position.set(15, 15, 60);  // Tablet view
+            } else {
+                camera.position.set(20, 20, 70);  // Mobile view
+            }
+        }
+
+        // Adjust scene size and camera aspect on window resize
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
